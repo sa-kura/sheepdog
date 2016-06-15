@@ -7,7 +7,23 @@ Cluster created at DATE
 
 Epoch Time           Version [Host:Port:V-Nodes,,,]
 DATE      1 [127.0.0.1:7000:128, 127.0.0.1:7001:128, 127.0.0.1:7002:128, 127.0.0.1:7003:128, 127.0.0.1:7004:128, 127.0.0.1:7005:128, 127.0.0.1:7006:128]
+Response's result: Network error between sheep
+failed to repair object 007c2b2500000003 from 127.0.0.1:7006 to 127.0.0.1:7001
 finish check&repair test
+fixed missing 7c2b2500000003
+fixed missing 7c2b2500000004
+fixed missing 7c2b2500000006
+fixed missing 7c2b250000000d
+fixed missing 7c2b250000000e
+fixed missing 7c2b2500000011
+fixed missing 7c2b2500000014
+fixed missing 7c2b2500000016
+fixed missing 7c2b2500000017
+fixed missing 7c2b2500000019
+fixed missing 7c2b250000001a
+fixed missing 7c2b250000001b
+fixed missing 7c2b250000001c
+fixed missing 807c2b2500000000
 Cluster status: running, auto-recovery enabled
 
 Cluster created at DATE
