@@ -6,6 +6,7 @@
 /* need for work_queue */
 #include "work.h"
 #include "event.h"
+
 /* define at sheep/sheep.c */
 #define EPOLL_SIZE 4096
 
@@ -20,10 +21,9 @@ static void test_sd_accept_handler()
 	/* parameter set */
 	sys = &__sys;
 	__sys.this_node.nr_vnodes = 1;
-	__sys.vdi_inuse[0] = 9;
 	__sys.gateway_only = false;
 	__sys.cinfo.status = SD_STATUS_OK;
-	__sys.cinfo.flags |= SD_CLUSTER_FLAG_USE_LOCK;
+	__sys.cinfo.flags = SD_CLUSTER_FLAG_RECYCLE_VID;
 
 	cinfo.proto_ver = SD_SHEEP_PROTO_VER;
 	cinfo.epoch = 1;
@@ -31,6 +31,7 @@ static void test_sd_accept_handler()
 	cinfo.status = SD_STATUS_OK;
 	cinfo.ctime = 100;
 	cinfo.proto_ver = SD_SHEEP_PROTO_VER;
+	cinfo.flags = SD_CLUSTER_FLAG_USE_LOCK;
 
 	joined.nid.addr[12]=127; 
 	joined.nid.addr[13]=0; 
@@ -43,20 +44,14 @@ static void test_sd_accept_handler()
 	init_work_queue(NULL);
 	sys->block_wqueue = create_ordered_work_queue("block");
 
-	/*
-	init_config_file();
-	*/
+	/* to skip call start_recovery() */
 	init_config_path(".");
-
-	/* to skip  call start_recovery() */
 	set_cluster_shutdown(true); 
 	set_cluster_config(&cinfo);
 
 	/* test target */
 	sd_accept_handler(&joined, &nroot, nr_nodes, &cinfo);
-
-	printf("\n");
-	printf("__sys.vdi_inuse[0]=%ld\n", __sys.vdi_inuse[0]);
+	TEST_ASSERT_EQUAL_HEX8(SD_CLUSTER_FLAG_USE_LOCK, __sys.cinfo.flags);
 }
 
 int main(int argc, char **argv)
