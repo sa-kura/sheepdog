@@ -15,7 +15,7 @@ int is_default_update_epoch_called = 0;
 int default_update_epoch(uint32_t epoch)
 {
 	is_default_update_epoch_called = 1;
-i	return 0;
+	return 0;
 }
 
 static void test_start_recovery()

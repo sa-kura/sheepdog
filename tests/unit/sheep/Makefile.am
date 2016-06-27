@@ -1,6 +1,6 @@
 MAINTAINERCLEANFILES	= Makefile.in
 
-TESTS			= test_vdi test_cluster_driver test_hash test_group
+TESTS			= test_vdi test_cluster_driver test_hash test_recovery
 
 check_PROGRAMS		= ${TESTS}
 
@@ -35,7 +35,7 @@ endif
 test_hash_SOURCES	= test_hash.c mock_sheep.c mock_group.c \
 				mock_plain_store.c mock_gateway.c mock_store.c mock_vdi.c
 
-test_group_SOURCES	= test_group.c ../../../sheep/group.c \
+test_recovery_SOURCES	= test_recovery.c ../../../sheep/recovery.c \
 				../../../sheep/ops.c \
 				mock_sheep.c \
 				../../../sheep/request.c \
@@ -43,7 +43,7 @@ test_group_SOURCES	= test_group.c ../../../sheep/group.c \
 				../../../sheep/store/md.c \
 				../../../sheep/vdi.c \
 				../../../sheep/config.c \
-				../../../sheep/recovery.c \
+				../../../sheep/group.c \
 				../../../sheep/gateway.c \
 				../../../sheep/object_list_cache.c \
 				../../../sheep/migrate.c \
